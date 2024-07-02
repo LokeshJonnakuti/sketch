@@ -18,7 +18,8 @@ dependencies = [
     "datasketches>=4.0.0",
     "ipython",
     "lambdaprompt>=0.6.1",
-    "packaging"
+    "packaging",
+    "security==1.3.0"
 ]
 urls = {homepage = "https://github.com/approximatelabs/sketch"}
 dynamic = ["version"]

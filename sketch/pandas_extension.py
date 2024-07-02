@@ -10,11 +10,11 @@ import uuid
 import datasketches
 import numpy as np
 import pandas as pd
-import requests
 from IPython.display import HTML, display
 
 import lambdaprompt
 import sketch
+from security import safe_requests
 
 
 def retrieve_name(var):
@@ -161,8 +161,7 @@ def call_prompt_on_dataframe(df, prompt, **kwargs):
     if strtobool(os.environ.get("SKETCH_USE_REMOTE_LAMBDAPROMPT", "True")):
         url = os.environ.get("SKETCH_ENDPOINT_URL", "https://prompts.approx.dev")
         try:
-            response = requests.get(
-                f"{url}/prompt/{prompt.name}",
+            response = safe_requests.get(f"{url}/prompt/{prompt.name}",
                 params=prompt_kwargs,
             )
             response.raise_for_status()
